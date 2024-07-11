@@ -1,0 +1,15 @@
+#Firs you will need to have a running K8s cluster which you can find in the "Installation Guide" file
+#All the mentioned files will be found with its names in the repo
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3; chmod 700 get_helm.sh; ./get_helm.sh
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx; helm repo add jetstack https://charts.jetstack.io; helm repo update
+nano hello-kubernetes-first.yaml
+nano hello-kubernetes-second.yaml
+kubectl create -f hello-kubernetes-first.yaml -f hello-kubernetes-second.yaml
+helm install nginx-ingress ingress-nginx/ingress-nginx --set controller.publishService.enabled=true
+kubectl patch svc nginx-ingress-ingress-nginx-controller -p '{"spec":{"externalIPs":["138.68.108.197"]}}'
+nano hello-kubernetes-ingress.yaml
+kubectl apply -f hello-kubernetes-ingress.yaml
+kubectl create namespace cert-manager
+helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.10.1 --set installCRDs=true
+nano production_issuer.yaml
+kubectl apply -f production_issuer.yaml
