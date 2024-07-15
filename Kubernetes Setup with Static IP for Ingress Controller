@@ -6,7 +6,7 @@ nano hello-kubernetes-first.yaml
 nano hello-kubernetes-second.yaml
 kubectl create -f hello-kubernetes-first.yaml -f hello-kubernetes-second.yaml
 helm install nginx-ingress ingress-nginx/ingress-nginx --set controller.publishService.enabled=true
-kubectl patch svc nginx-ingress-ingress-nginx-controller -p '{"spec":{"externalIPs":["138.68.108.197"]}}'
+EXTERNAL_IP=$(curl -s ipconfig.io); kubectl patch svc nginx-ingress-ingress-nginx-controller -p "{\"spec\":{\"externalIPs\":[\"$EXTERNAL_IP\"]}}"
 nano hello-kubernetes-ingress.yaml
 kubectl apply -f hello-kubernetes-ingress.yaml
 kubectl create namespace cert-manager
