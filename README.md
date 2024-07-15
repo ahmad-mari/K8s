@@ -12,3 +12,6 @@ EX: kubeadm join <Master_IP_Adress>:6443 --token <TOKEN> \
 #Now run this on **MASTER** only 
 
 mkdir -p $HOME/.kube; sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config; sudo chown $(id -u):$(id -g) $HOME/.kube/config; kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+
+#This is to install ingress but make sure to change the domains as needed
+curl -sf https://raw.githubusercontent.com/ahmad-mari/K8s/main/Setup_Static_IP_for_Ingress_Controller.sh | bash
