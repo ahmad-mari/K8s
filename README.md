@@ -1,6 +1,6 @@
 Before we start here, you will find a file called k8s-installation-on-all-nodes.sh, clone it on all nodes and run it, after that we can start with the following.
 
-curl -O https://raw.githubusercontent.com/ahmad-mari/K8s/main/k8s-installation-on-all-nodes.sh;bash k8s-installation-on-all-nodes.sh 
+curl -sf https://raw.githubusercontent.com/ahmad-mari/K8s/main/k8s-installation-on-all-nodes.sh | bash 
 
 #run the Following on **MASTER** node only 
 sudo kubeadm init
